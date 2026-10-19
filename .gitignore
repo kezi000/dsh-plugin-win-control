@@ -1,0 +1,20 @@
+# Windows / macOS junk
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# dependencies (this plugin links them from the DSH profile instead of installing)
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+
+# generated test artifacts
+test/*.png
+test/**/*.png
+*.bak
+*.bak-*
+cordis.patch.yml.bak*
+
+# local runtime state
+activation.json
+*.log

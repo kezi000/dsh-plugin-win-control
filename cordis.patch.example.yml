@@ -1,0 +1,11 @@
+# Template: append this block to %USERPROFILE%\.dsh\profiles\desktop\cordis.patch.yml
+# (or ~/.dsh/profiles/desktop/cordis.patch.yml) and restart DSH.
+# Replace <you> with your Windows user name.
+- insert:
+    - id: win-control
+      name: 'file:///C:/Users/<you>/.dsh/plugins/dsh-plugin-win-control/lib/index.js'
+      config:
+        captureKeep: 200
+        uiaMaxNodes: 400
+        cdpPort: 9222
+        cdpTimeoutMs: 10000

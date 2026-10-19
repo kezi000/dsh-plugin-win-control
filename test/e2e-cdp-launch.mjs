@@ -1,0 +1,15 @@
+import { apply } from '../lib/index.js';
+const defs = new Map();
+const ctx = { tools: { register(d) { defs.set(d.name, d); } }, get() { return undefined; }, effect(fn) { const d = fn(); return () => { if (typeof d === 'function') d(); }; }, logger: { info() {}, warn() {} } };
+apply(ctx, {});
+const exec = { signal: new AbortController().signal };
+const call = (name, args) => defs.get(name).execute(args, exec);
+const t0 = Date.now();
+const launched = await call('cdp_launch', { url: 'https://example.com', headless: true });
+console.log('launch returned in', Date.now() - t0, 'ms; title at launch =', JSON.stringify(launched.title), 'url =', launched.url);
+const title = await call('cdp_eval', { port: launched.port, expression: 'document.title' });
+console.log('immediate cdp_eval title =', title.value_json.trim(), '|', title.elapsed_ms + 'ms');
+const ok = title.value_json.includes('Example Domain');
+await call('cdp_close', { port: launched.port });
+console.log(ok ? 'PASS fixed launch returns the loaded page' : 'FAIL launch still returns a blank page');
+process.exit(ok ? 0 : 1);

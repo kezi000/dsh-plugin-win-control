@@ -1,0 +1,61 @@
+{
+  "name": "dsh-plugin-win-control",
+  "version": "0.2.2",
+  "description": "DSH/cordis plugin: 20 low-conflict Windows desktop + Chromium tools — enumerate windows, read UI Automation trees, invoke controls, click/type without stealing focus, capture windows and pages offscreen, and drive an isolated Chromium over CDP.",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "dsh",
+    "cordis",
+    "plugin",
+    "windows",
+    "win32",
+    "koffi",
+    "ui-automation",
+    "uia",
+    "cdp",
+    "chrome-devtools",
+    "screenshot",
+    "automation"
+  ],
+  "author": "kezi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kezi000/dsh-plugin-win-control.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kezi000/dsh-plugin-win-control/issues"
+  },
+  "homepage": "https://github.com/kezi000/dsh-plugin-win-control#readme",
+  "dependencies": {
+    "koffi": "^3.1.5",
+    "ws": "^8.18.0"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/schemastery": "*"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node test/registry.mjs && node test/contracts.mjs && node test/smoke.mjs",
+    "test:e2e": "node test/e2e-winforms.mjs && node test/e2e-keys-tools.mjs && node test/e2e-cdp-tools.mjs && node test/e2e-cdp-launch.mjs",
+    "reload:live": "node test/hot-reload.mjs"
+  }
+}
